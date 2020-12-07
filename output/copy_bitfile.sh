@@ -1,0 +1,1 @@
+scp atca:/home/lardilap/Projects/Serenity-A2577/ibert/IBERT_MGT_16G_25G_ex/IBERT_MGT_16G_25G_ex.runs/impl_1/*.ltx atca:/home/lardilap/Projects/Serenity-A2577/ibert/IBERT_MGT_16G_25G_ex/IBERT_MGT_16G_25G_ex.runs/impl_1/*.bit .
