@@ -67,11 +67,11 @@ module example_IBERT_MGT_16G_25G
    wire                        gty_sysclk_i;
    wire lclk40;
     
-   reg [ 0 : C_SLV_DWIDTH - 1] read_which_heater;
+   wire [ 0 : C_SLV_DWIDTH - 1] heater_read_addr = 0 ;
    wire [ 0 : C_SLV_DWIDTH - 1] heater_output;
-   reg [31 : 0 ] adjust_heaters;
-   reg out;
-   wire out_o;
+   wire [31 : 0 ] heater_adjust = 0;
+   wire heater_reset;
+   wire heater_enable;
   //
   // Refclk IBUFDS instantiations
   //
@@ -990,18 +990,7 @@ module example_IBERT_MGT_16G_25G
       .gtsouthrefclk01_i(gty_qsouthrefclk01_i),
       .gtsouthrefclk11_i(gty_qsouthrefclk11_i)
     );
-    
-  always @ ( posedge lclk40 ) begin
-    adjust_heaters <= #dly adjust_heaters + 1'b1;
-    read_which_heater <= #dly read_which_heater + 4'hA;
-    out <= #dly | heater_output;
-  end 
-  
-  OBUF OBUF_inst (
-      .O(out_o), // 1-bit output: Buffer output (connect directly to top-level port)
-      .I(out)  // 1-bit input: Buffer input
-   );
-    
+        
   heater #
   (
     .C_SLV_DWIDTH  (C_SLV_DWIDTH),
@@ -1010,11 +999,20 @@ module example_IBERT_MGT_16G_25G
   heater_inst
   (
     .clk                     (lclk40),
-    .reset                   (1'b0),
-    .enable_heater           (1'b1),
-    .adjust_heaters          (adjust_heaters),
-    .read_which_heater       (read_which_heater),
+    .reset                   (heater_reset),
+    .enable_heater           (heater_enable),
+    .adjust_heaters          (heater_adjust),
+    .read_which_heater       (heater_read_addr),
     .heater_output           (heater_output)
   );
+  
+  vio_0 vio_inst (
+  .clk(clk),                // input wire clk
+  .probe_in0(heater_output),    // input wire [31 : 0] probe_in0
+  .probe_out0(heater_adjust),  // output wire [31 : 0] probe_out0
+  .probe_out1(heater_read_addr),  // output wire [31 : 0] probe_out1
+  .probe_out2(heater_reset),  // output wire [0 : 0] probe_out2
+  .probe_out3(heater_enable)  // output wire [0 : 0] probe_out3
+);
 
 endmodule
