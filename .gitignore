@@ -1,3 +1,7 @@
 Serenity-A2577_IBERT/*
+ip/
+!ip/*/*.xci
 *.jou
 *.log
+*.str
+*~
