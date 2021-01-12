@@ -17,9 +17,7 @@
 ##**************************************************************************
 ##
 set_property PACKAGE_PIN N17 [get_ports] lclk40_i]
-set_property PACKAGE_PIN L18 [get_ports] out_o]
 set_property IOSTANDARD LVCMOS18 [get_ports LCLK40]
-set_property IOSTANDARD LVCMOS18 [get_ports out_o]
 create_clock -period 25 -name lclk40 [get_ports lclk40_i]
 ##
 ##**************************************************************************

@@ -31,8 +31,7 @@ module example_IBERT_MGT_16G_25G
   input  [`C_GTY_REFCLKS_USED-1:0]      gty_refclk0n_i,
   input  [`C_GTY_REFCLKS_USED-1:0]      gty_refclk1p_i,
   input  [`C_GTY_REFCLKS_USED-1:0]      gty_refclk1n_i,
-  input lclk40_i,
-  output out
+  input lclk40_i
 );
   
   localparam dly = 1'd1;
@@ -67,9 +66,9 @@ module example_IBERT_MGT_16G_25G
    wire                        gty_sysclk_i;
    wire lclk40;
     
-   wire [ 0 : C_SLV_DWIDTH - 1] heater_read_addr = 0 ;
+   wire [ 0 : C_SLV_DWIDTH - 1] heater_read_add;
    wire [ 0 : C_SLV_DWIDTH - 1] heater_output;
-   wire [31 : 0 ] heater_adjust = 0;
+   wire [31 : 0 ] heater_adjus;
    wire heater_reset;
    wire heater_enable;
   //
@@ -1007,7 +1006,7 @@ module example_IBERT_MGT_16G_25G
   );
   
   vio_0 vio_inst (
-  .clk(clk),                // input wire clk
+  .clk(lclk40),                // input wire clk
   .probe_in0(heater_output),    // input wire [31 : 0] probe_in0
   .probe_out0(heater_adjust),  // output wire [31 : 0] probe_out0
   .probe_out1(heater_read_addr),  // output wire [31 : 0] probe_out1
