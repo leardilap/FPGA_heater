@@ -1,1 +1,2 @@
-scp atca:/home/lardilap/Projects/Serenity-A2577/ibert/IBERT_MGT_16G_25G_ex/IBERT_MGT_16G_25G_ex.runs/impl_1/*.ltx atca:/home/lardilap/Projects/Serenity-A2577/ibert/IBERT_MGT_16G_25G_ex/IBERT_MGT_16G_25G_ex.runs/impl_1/*.bit .
+cp ../Serenity-A2577_IBERT/Serenity-A2577_IBERT.runs/impl_1/*.ltx ../Serenity-A2577_IBERT/Serenity-A2577_IBERT.runs/impl_1/*.bit .
+
