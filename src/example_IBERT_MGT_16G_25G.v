@@ -66,7 +66,7 @@ module example_IBERT_MGT_16G_25G
    wire                        gty_sysclk_i;
    wire lclk40;
     
-   wire [ 0 : C_SLV_DWIDTH - 1] heater_read_add;
+   wire [ 0 : C_SLV_DWIDTH - 1] heater_read_addr;
    wire [ 0 : C_SLV_DWIDTH - 1] heater_output;
    wire [31 : 0 ] heater_adjust;
    wire heater_reset;
